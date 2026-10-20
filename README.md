@@ -14,6 +14,7 @@
 | 6 | [06-test-plan.md](06-test-plan.md) | Kiểm tra sản phẩm đúng bằng cách nào? |
 | 7 | [07-roadmap.md](07-roadmap.md) | Sau V1 mở rộng ra sao? |
 
+
 ## Quy tắc cập nhật (Agile nhẹ)
 
 - `02-requirements.md` là nguồn yêu cầu chính của V1. Một yêu cầu quan trọng nên có ID `FR-xx` hoặc `NFR-xx`.
