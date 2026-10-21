@@ -1,6 +1,6 @@
 # 02 — Software Requirements (V1)
 
-**Status:** Draft 0.1 — cần xác nhận trước khi chốt baseline.  
+**Status:** V1 Requirements 1.0 — đã xác nhận ngày 2026-10-21.
 **Quy ước:** FR = Functional Requirement; NFR = Non-functional Requirement.  
 **Ưu tiên:** Must = bắt buộc với V1.
 
@@ -78,6 +78,6 @@
 
 ## 7. Quy trình chốt requirements
 
-- [ ] Đọc lại FR-01 đến FR-09 và NFR-01 đến NFR-07.
-- [ ] Điều chỉnh những quyết định đang là mặc định nếu cần.
-- [ ] Chốt bản baseline là `V1 Requirements 1.0` trước khi hoàn thành Implementation.
+- [x] Đọc lại FR-01 đến FR-09 và NFR-01 đến NFR-07.
+- [x] Điều chỉnh những quyết định đang là mặc định nếu cần.
+- [x] Chốt bản baseline là `V1 Requirements 1.0` trước khi hoàn thành Implementation.

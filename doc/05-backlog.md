@@ -9,7 +9,7 @@
 | Task | Nội dung | Liên quan | Ưu tiên | Trạng thái |
 |---|---|---|---|---|
 | T-01 | Tạo cấu trúc thư mục và tài liệu nháp | Setup | Must | Done (skeleton only) |
-| T-02 | Xem lại và chốt requirements V1 | FR-01..09 | Must | To Do |
+| T-02 | Xem lại và chốt requirements V1 | FR-01..09 | Must | Doing |
 | T-03 | Thiết kế giao diện tĩnh và responsive | NFR-01, NFR-05 | Must | To Do |
 | T-04 | Viết chức năng tìm thành phố qua Geocoding API | US-01 | Must | To Do |
 | T-05 | Viết chức năng lấy current + daily từ Forecast API | US-02, US-03 | Must | To Do |
@@ -52,3 +52,4 @@ Khi bắt đầu dùng GitHub Issues/Projects, có thể tạo một issue cho t
 | Ngày | Task | Kết quả / Blocker |
 |---|---|---|
 | 2026-10-21 | T-01 | Đã tạo bộ tài liệu và các file source rỗng. Chưa có HTML/CSS/JS. |
+| 2026-10-21 | T-02 | Đã đồng ý phạm vi V1; đang cập nhật và kiểm tra baseline requirements. |
