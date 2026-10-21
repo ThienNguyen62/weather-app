@@ -10,13 +10,13 @@
 |---|---|---|---|---|
 | T-01 | Tạo cấu trúc thư mục và tài liệu nháp | Setup | Must | Done (skeleton only) |
 | T-02 | Xem lại và chốt requirements V1 | FR-01..09 | Must | Doing |
-| T-03 | Thiết kế giao diện tĩnh và responsive | NFR-01, NFR-05 | Must | To Do |
-| T-04 | Viết chức năng tìm thành phố qua Geocoding API | US-01 | Must | To Do |
-| T-05 | Viết chức năng lấy current + daily từ Forecast API | US-02, US-03 | Must | To Do |
-| T-06 | Render thông tin hiện tại và dự báo 3 ngày | US-02, US-03 | Must | To Do |
-| T-07 | Hoàn thiện VI/EN và mô tả mã thời tiết | US-04 | Must | To Do |
-| T-08 | Loading, validate input, không tìm thấy, lỗi mạng | US-01, US-05 | Must | To Do |
-| T-09 | Hiển thị ghi nguồn dữ liệu | US-06 | Must | To Do |
+| T-03 | Thiết kế giao diện tĩnh và responsive | NFR-01, NFR-05 | Must | To Do (?? c? source; ch? ki?m th?) |
+| T-04 | Viết chức năng tìm thành phố qua Geocoding API | US-01 | Must | To Do (?? c? source; ch? ki?m th?) |
+| T-05 | Viết chức năng lấy current + daily từ Forecast API | US-02, US-03 | Must | To Do (?? c? source; ch? ki?m th?) |
+| T-06 | Render thông tin hiện tại và dự báo 3 ngày | US-02, US-03 | Must | To Do (?? c? source; ch? ki?m th?) |
+| T-07 | Hoàn thiện VI/EN và mô tả mã thời tiết | US-04 | Must | To Do (?? c? source; ch? ki?m th?) |
+| T-08 | Loading, validate input, không tìm thấy, lỗi mạng | US-01, US-05 | Must | To Do (?? c? source; ch? ki?m th?) |
+| T-09 | Hiển thị ghi nguồn dữ liệu | US-06 | Must | To Do (?? c? source; ch? ki?m th?) |
 | T-10 | Manual testing và sửa lỗi | Tất cả | Must | To Do |
 | T-11 | Viết README hoàn chỉnh và deploy GitHub Pages | Release | Must | To Do |
 
@@ -53,3 +53,7 @@ Khi bắt đầu dùng GitHub Issues/Projects, có thể tạo một issue cho t
 |---|---|---|
 | 2026-10-21 | T-01 | Đã tạo bộ tài liệu và các file source rỗng. Chưa có HTML/CSS/JS. |
 | 2026-10-21 | T-02 | Đã đồng ý phạm vi V1; đang cập nhật và kiểm tra baseline requirements. |
+
+| 2026-10-21 | T-03..T-11 | ?? vi?t source V1 v? README; ki?m tra t?nh ??t. Kh?ng c? tr?nh duy?t k?t n?i ?? ki?m th? th?c t?; gi? task ch?a Done, T-10 ?ang Doing. Kh?ng commit/push/deploy theo y?u c?u. |
+
+**Theo d?i:** T-02 ?? x?c nh?n baseline; tr?ng th?i Doing ???c gi? l?i cho t?i khi x?c minh commit t?i li?u. C?c task c? source ch?a ???c coi l? Done tr??c khi ki?m th? theo AC.

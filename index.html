@@ -1,12 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basic Weather Appp</title>
-    <link rel="stylesheet" href "./style.css"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Thời tiết hiện tại và dự báo 3 ngày">
+  <title>Weather App V1</title>
+  <link rel="stylesheet" href="./src/css/style.css">
+  <script type="module" src="./src/app.js"></script>
 </head>
 <body>
-    <div class="main-c"
+  <main class="shell">
+    <header><a class="brand" href="./"><span aria-hidden="true">☀</span> Weather App</a><button id="language" type="button">English</button></header>
+    <section class="intro"><p class="eyebrow" data-i18n="eyebrow">THỜI TIẾT MỖI NGÀY</p><h1 data-i18n="heading">Hôm nay, trời thế nào?</h1><p data-i18n="subtitle">Tìm một thành phố. Chuẩn bị cho ngày của bạn.</p></section>
+    <section class="panel">
+      <form id="search-form" novalidate>
+        <label for="city" data-i18n="cityLabel">Tên thành phố</label>
+        <div class="search-row"><input id="city" type="search" name="city" maxlength="120" autocomplete="off" aria-describedby="search-hint message" placeholder="Ví dụ: Hanoi, Tokyo, London"><button id="search" class="primary" type="submit" data-i18n="search">Tìm kiếm</button></div>
+        <p id="search-hint" class="hint" data-i18n="hint">Hiển thị kết quả đầu tiên, kèm quốc gia.</p>
+      </form>
+    </section>
+    <p id="message" class="message" role="status" aria-live="polite" aria-atomic="true"></p>
+    <div id="results" hidden>
+      <section class="panel current" aria-labelledby="location">
+        <div><p class="eyebrow" data-i18n="current">THỜI TIẾT HIỆN TẠI</p><h2 id="location"></h2><p id="observed" class="hint"></p><p id="condition"></p></div>
+        <div id="temperature" class="temperature"></div>
+        <dl class="metrics"><div><dt data-i18n="humidity">Độ ẩm</dt><dd id="humidity"></dd></div><div><dt data-i18n="wind">Tốc độ gió</dt><dd id="wind"></dd></div></dl>
+      </section>
+      <section class="forecast-section" aria-labelledby="forecast-title"><h2 id="forecast-title" data-i18n="forecast">Dự báo 3 ngày</h2><p class="hint" data-i18n="forecastHint">Hôm nay và hai ngày tiếp theo · Theo giờ địa phương</p><div id="forecast" class="forecast-grid"></div></section>
+    </div>
+    <footer><span data-i18n="source">Dữ liệu thời tiết:</span> <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a><span class="footer-note" data-i18n="note">Dự báo có thể thay đổi theo thời gian.</span></footer>
+    <noscript>Ứng dụng cần JavaScript. Please enable JavaScript.</noscript>
+  </main>
 </body>
 </html>
