@@ -9,22 +9,50 @@
   <script type="module" src="./src/app.js"></script>
 </head>
 <body>
+  <svg class="icon-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="icon-sun" viewBox="0 0 48 48"><circle cx="24" cy="24" r="9" fill="#ffdd83"/><path d="M24 4v5m0 30v5M4 24h5m30 0h5M10 10l4 4m20 20 4 4M10 38l4-4m20-20 4-4"/></symbol>
+      <symbol id="icon-cloud" viewBox="0 0 48 48"><path d="M12 36a9 9 0 0 1-1-18 13 13 0 0 1 25-1 10 10 0 0 1 0 19Z" fill="#e1ebf6"/></symbol>
+      <symbol id="icon-partly" viewBox="0 0 48 48"><circle cx="17" cy="17" r="8" fill="#ffdd83" stroke="#bd7805"/><path d="M17 3v3M3 17h3M7 7l2 2m18-2-2 2" stroke="#bd7805"/><path d="M17 39a8 8 0 0 1-1-16 11 11 0 0 1 21 0 8 8 0 0 1 0 16Z" fill="#e1ebf6"/></symbol>
+      <symbol id="icon-rain" viewBox="0 0 48 48"><path d="M12 29a8 8 0 0 1 0-16 12 12 0 0 1 23 0 8 8 0 0 1 0 16Z" fill="#dceafa"/><path d="m15 35-3 7m13-7-3 7m13-7-3 7" stroke="#327acb" stroke-width="2.5"/></symbol>
+      <symbol id="icon-snow" viewBox="0 0 48 48"><path d="M24 5v38M8 14l32 20M8 34l32-20M18 9l6 6 6-6M18 39l6-6 6 6M9 21l8-1-2-8M39 27l-8 1 2 8M9 27l8 1-2 8M39 21l-8-1 2-8"/></symbol>
+      <symbol id="icon-storm" viewBox="0 0 48 48"><path d="M12 29a8 8 0 0 1 0-16 12 12 0 0 1 23 0 8 8 0 0 1 0 16" fill="#e6e2f3"/><path d="m25 25-9 12h8l-2 8 12-15h-9Z" fill="#f5cd6e" stroke="#886426"/></symbol>
+      <symbol id="icon-fog" viewBox="0 0 48 48"><path d="M9 23a8 8 0 0 1 4-15 12 12 0 0 1 22 4 7 7 0 0 1 4 11M6 30h36M12 37h25M8 44h32"/></symbol>
+      <symbol id="icon-unknown" viewBox="0 0 48 48"><circle cx="24" cy="24" r="18"/><path d="M18 18a6 6 0 1 1 10 5c-4 2-4 3-4 6m0 5h.01"/></symbol>
+      <symbol id="icon-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol>
+      <symbol id="icon-drop" viewBox="0 0 24 24"><path d="M12 3S5 10 5 15a7 7 0 0 0 14 0c0-5-7-12-7-12Z"/><path d="M9 15a3 3 0 0 0 3 3"/></symbol>
+      <symbol id="icon-wind" viewBox="0 0 24 24"><path d="M3 8h12a3 3 0 1 0-3-3M3 12h16a3 3 0 1 1-3 3M3 16h5a3 3 0 1 1-3 3"/></symbol>
+    </defs>
+  </svg>
   <main class="shell">
-    <header><a class="brand" href="./"><span aria-hidden="true">☀</span> Weather App</a><button id="language" type="button">English</button></header>
+    <header class="site-header"><a class="brand" href="./"><span class="brand-mark"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-partly"/></svg></span> Weather App</a><button id="language" type="button">English</button></header>
     <section class="intro"><p class="eyebrow" data-i18n="eyebrow">THỜI TIẾT MỖI NGÀY</p><h1 data-i18n="heading">Hôm nay, trời thế nào?</h1><p data-i18n="subtitle">Tìm một thành phố. Chuẩn bị cho ngày của bạn.</p></section>
-    <section class="panel">
+    <section class="panel search-panel" aria-labelledby="city-label">
       <form id="search-form" novalidate>
-        <label for="city" data-i18n="cityLabel">Tên thành phố</label>
-        <div class="search-row"><input id="city" type="search" name="city" maxlength="120" autocomplete="off" aria-describedby="search-hint message" placeholder="Ví dụ: Hanoi, Tokyo, London"><button id="search" class="primary" type="submit" data-i18n="search">Tìm kiếm</button></div>
-        <p id="search-hint" class="hint" data-i18n="hint">Hiển thị kết quả đầu tiên, kèm quốc gia.</p>
+        <label id="city-label" for="city" data-i18n="cityLabel">Tên thành phố</label>
+        <div class="search-row"><div class="search-field"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-search"/></svg><input id="city" type="search" name="city" maxlength="120" autocomplete="off" aria-describedby="search-hint message" placeholder="Ví dụ: Hanoi, Tokyo, London"></div><button id="search" class="primary" type="submit" data-i18n="search">Tìm kiếm</button></div>
+        <p id="search-hint" class="hint" data-i18n="hint">Chọn địa điểm phù hợp từ kết quả tìm kiếm.</p>
       </form>
     </section>
     <p id="message" class="message" role="status" aria-live="polite" aria-atomic="true"></p>
+    <section id="city-choices" class="panel places" aria-labelledby="choices-title" hidden>
+      <h2 id="choices-title" data-i18n="choicesTitle">Chọn thành phố</h2>
+      <ul id="city-options" class="place-list"></ul>
+    </section>
+    <section id="recent-places" class="panel places" aria-labelledby="recent-title" hidden>
+      <h2 id="recent-title" data-i18n="recentTitle">Địa điểm gần đây</h2>
+      <ul id="recent-options" class="place-list"></ul>
+      <button id="clear-history" type="button" data-i18n="clearHistory">Xóa lịch sử</button>
+    </section>
     <div id="results" hidden>
       <section class="panel current" aria-labelledby="location">
-        <div><p class="eyebrow" data-i18n="current">THỜI TIẾT HIỆN TẠI</p><h2 id="location"></h2><p id="observed" class="hint"></p><p id="condition"></p></div>
-        <div id="temperature" class="temperature"></div>
-        <dl class="metrics"><div><dt data-i18n="humidity">Độ ẩm</dt><dd id="humidity"></dd></div><div><dt data-i18n="wind">Tốc độ gió</dt><dd id="wind"></dd></div></dl>
+        <p class="eyebrow" data-i18n="current">THỜI TIẾT HIỆN TẠI</p><h2 id="location" tabindex="-1"></h2><p id="observed" class="hint"></p>
+        <div class="current-summary"><div id="temperature" class="temperature"></div><span id="current-icon" class="weather-icon" aria-hidden="true"></span></div>
+        <p id="condition"></p>
+        <dl class="metrics">
+          <div class="metric"><dt><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-drop"/></svg><span data-i18n="humidity">Độ ẩm</span></dt><dd id="humidity"></dd></div>
+          <div class="metric"><dt><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><use href="#icon-wind"/></svg><span data-i18n="wind">Tốc độ gió</span></dt><dd id="wind"></dd></div>
+        </dl>
       </section>
       <section class="forecast-section" aria-labelledby="forecast-title"><h2 id="forecast-title" data-i18n="forecast">Dự báo 3 ngày</h2><p class="hint" data-i18n="forecastHint">Hôm nay và hai ngày tiếp theo · Theo giờ địa phương</p><div id="forecast" class="forecast-grid"></div></section>
     </div>

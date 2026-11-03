@@ -2,7 +2,7 @@
   vi: {
     eyebrow: 'THỜI TIẾT MỖI NGÀY', heading: 'Hôm nay, trời thế nào?', subtitle: 'Tìm một thành phố. Chuẩn bị cho ngày của bạn.',
     cityLabel: 'Tên thành phố', search: 'Tìm kiếm', placeholder: 'Ví dụ: Hanoi, Tokyo, London',
-    hint: 'Hiển thị kết quả đầu tiên, kèm quốc gia.', current: 'THỜI TIẾT HIỆN TẠI', humidity: 'Độ ẩm', wind: 'Tốc độ gió',
+    hint: 'Chọn địa điểm phù hợp từ kết quả tìm kiếm.', current: 'THỜI TIẾT HIỆN TẠI', humidity: 'Độ ẩm', wind: 'Tốc độ gió',
     forecast: 'Dự báo 3 ngày', forecastHint: 'Hôm nay và hai ngày tiếp theo · Theo giờ địa phương',
     source: 'Dữ liệu thời tiết:', note: 'Dự báo có thể thay đổi theo thời gian.',
     initial: 'Nhập tên thành phố để xem thời tiết.', loading: 'Đang tải thời tiết…',
@@ -10,12 +10,13 @@
     apiError: 'Dịch vụ thời tiết đang gặp lỗi. Vui lòng thử lại.', networkError: 'Không thể kết nối. Kiểm tra mạng rồi thử lại.',
     dataError: 'Dữ liệu thời tiết không đầy đủ hoặc không hợp lệ. Vui lòng thử lại.', timeout: 'Yêu cầu mất quá nhiều thời gian. Vui lòng thử lại.',
     observed: 'Thời điểm dữ liệu (giờ địa phương)', high: 'Cao', low: 'Thấp', today: 'Hôm nay', unknown: 'Chưa rõ trạng thái thời tiết',
-    success: 'Đã cập nhật thời tiết.',
+    success: 'Đã cập nhật thời tiết.', searching: 'Đang tìm thành phố…', chooseCity: 'Chọn một địa điểm để xem thời tiết.',
+    choicesTitle: 'Chọn thành phố', recentTitle: 'Địa điểm gần đây', clearHistory: 'Xóa lịch sử',
   },
   en: {
     eyebrow: 'EVERYDAY WEATHER', heading: 'What’s the weather today?', subtitle: 'Find a city. Get ready for your day.',
     cityLabel: 'City name', search: 'Search', placeholder: 'Try Hanoi, Tokyo, London',
-    hint: 'Showing the first match, including its country.', current: 'CURRENT WEATHER', humidity: 'Humidity', wind: 'Wind speed',
+    hint: 'Choose the correct place from the search results.', current: 'CURRENT WEATHER', humidity: 'Humidity', wind: 'Wind speed',
     forecast: '3-day forecast', forecastHint: 'Today and the next two days · Local time',
     source: 'Weather data:', note: 'Forecasts may change over time.',
     initial: 'Enter a city name to see the weather.', loading: 'Loading weather…',
@@ -23,7 +24,8 @@
     apiError: 'The weather service is unavailable. Please try again.', networkError: 'Unable to connect. Check your connection and try again.',
     dataError: 'Weather data is incomplete or invalid. Please try again.', timeout: 'The request took too long. Please try again.',
     observed: 'Data time (local time)', high: 'High', low: 'Low', today: 'Today', unknown: 'Unknown weather condition',
-    success: 'Weather updated.',
+    success: 'Weather updated.', searching: 'Searching for cities…', chooseCity: 'Choose a place to see the weather.',
+    choicesTitle: 'Choose a city', recentTitle: 'Recent places', clearHistory: 'Clear history',
   },
 };
 

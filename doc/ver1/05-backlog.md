@@ -19,6 +19,7 @@
 | T-09 | Hiển thị ghi nguồn dữ liệu | US-06 | Must | To Do (?? c? source; ch? ki?m th?) |
 | T-10 | Manual testing và sửa lỗi | Tất cả | Must | To Do |
 | T-11 | Viết README hoàn chỉnh và deploy GitHub Pages | Release | Must | To Do |
+| UI-01 | Làm mới UI xanh dương, icon SVG, card chỉ số, bố cục mobile-first | T-03, T-06, T-07 | Must | Doing — đã viết và qua kiểm tra logic; chờ kiểm thử giao diện thực tế |
 
 **Ghi chú:** T-01 chỉ tạo tài liệu và các file code **rỗng**; chưa có giao diện hay tính năng nào được triển khai. Việc khởi tạo Git/GitHub sẽ thực hiện khi bắt đầu development.
 
@@ -48,6 +49,8 @@ Khi bắt đầu dùng GitHub Issues/Projects, có thể tạo một issue cho t
 - **Mỗi tuần hoặc sau một chức năng:** review bản chạy được và tự hỏi điều gì nên cải tiến.
 
 ## 5. Nhật ký ngắn
+
+- 2026-11-04, UI-01: thay giao diện bằng bảng màu xanh dương/trung tính, CSS mobile-first (mốc 540px và 860px), nhiệt độ lớn, icon SVG theo mã thời tiết, card độ ẩm/gió và dự báo. Giữ nguyên logic API, tìm kiếm, lịch sử và lưu ngôn ngữ. `node tests/logic.mjs` Pass với API/DOM mô phỏng; chưa xác minh bố cục bằng trình duyệt vì browser access host không khả dụng. Chưa Done; không commit/push/deploy.
 
 | Ngày | Task | Kết quả / Blocker |
 |---|---|---|

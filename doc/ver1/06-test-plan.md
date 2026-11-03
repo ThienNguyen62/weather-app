@@ -23,6 +23,19 @@
 
 ## 2. Quy tắc kiểm thử dữ liệu thời tiết
 
+### Kiểm thử giao diện mới — UI-01 (2026-11-04)
+
+| ID | Các bước | Kết quả mong đợi | Status |
+|---|---|---|---|
+| UI-01 | Mở trang ở 360px, 768px và 1280px; thử cả VI và EN | Không tràn ngang, tên dài xuống dòng, nút dễ chạm; desktop có hai cột thời tiết/dự báo | Not Run |
+| UI-02 | Dùng Tab, Shift+Tab, Enter để tìm, chọn kết quả, chọn lịch sử, đổi ngôn ngữ và xóa lịch sử | Focus rõ ràng; mọi nút dùng được; không mất focus khi đổi ngôn ngữ | Not Run |
+| UI-03 | Tìm và chọn thành phố; đối chiếu mã thời tiết trong Network | Icon phù hợp mô tả hiện tại và 3 ngày; icon không thay thế văn bản | Not Run |
+| UI-04 | Thử input sai, không tìm thấy, Slow network và Offline rồi thử lại | Trạng thái loading/lỗi dễ đọc, không kẹt form; không hiện dữ liệu giả | Not Run |
+| UI-05 | Bật prefers-reduced-motion trong DevTools | Spinner ngừng chuyển động, không có transition; văn bản đang tải vẫn hiện | Not Run |
+| UI-06 | Dùng screen reader kiểm tra form, thông báo và thời tiết | Nhãn theo VI/EN, trạng thái được thông báo; icon trang trí không bị đọc lặp | Not Run |
+
+Kiểm tra đã chạy: `node tests/logic.mjs` Pass (mock API/DOM), gồm tìm trước/chọn sau, tọa độ đã chọn, lịch sử, lưu trữ bị chặn, thử lại sau lỗi và ánh xạ icon với trường hợp mã lạ. Kết quả này không thay thế kiểm thử layout, API thật hay accessibility trên trình duyệt. Browser access host không khả dụng trong phiên thực hiện; các ca trên giữ Not Run.
+
 - Không viết Expected Result kiểu `Hanoi = 28°C`; thời tiết luôn thay đổi.
 - So sánh dữ liệu hiển thị với trường tương ứng trong JSON trả về ở tab Network của DevTools.
 - Không lấy dữ liệu của thành phố A để kết luận ứng dụng đúng cho thành phố B.
