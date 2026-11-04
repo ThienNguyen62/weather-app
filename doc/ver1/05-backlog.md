@@ -50,6 +50,8 @@ Khi bắt đầu dùng GitHub Issues/Projects, có thể tạo một issue cho t
 
 ## 5. Nhật ký ngắn
 
+- 2026-11-04, tài liệu: bổ sung `root.md` làm bản đồ source hiện tại, giải thích module, state, luồng request, storage, cách chạy/test và giới hạn xác minh. Chưa cần tạo `.agent/`; chưa đổi trạng thái các task chức năng.
+
 - 2026-11-04, UI-01: thay giao diện bằng bảng màu xanh dương/trung tính, CSS mobile-first (mốc 540px và 860px), nhiệt độ lớn, icon SVG theo mã thời tiết, card độ ẩm/gió và dự báo. Giữ nguyên logic API, tìm kiếm, lịch sử và lưu ngôn ngữ. `node tests/logic.mjs` Pass với API/DOM mô phỏng; chưa xác minh bố cục bằng trình duyệt vì browser access host không khả dụng. Chưa Done; không commit/push/deploy.
 
 | Ngày | Task | Kết quả / Blocker |
