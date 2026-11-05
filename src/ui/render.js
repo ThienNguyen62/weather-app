@@ -51,6 +51,7 @@ export function render(state, now = new Date()) {
   const t = translations[state.language];
   const number = value => new Intl.NumberFormat(state.language === 'vi' ? 'vi-VN' : 'en-GB', { maximumFractionDigits: 1 }).format(value);
   document.documentElement.lang = state.language;
+  const enteringWeather = !!state.weather && document.documentElement.dataset.view !== 'weather';
   document.documentElement.dataset.view = state.weather ? 'weather' : 'welcome';
   document.documentElement.dataset.period = state.weather
     ? periodForHour(localHour(state.weather.timezone, now)) : 'day';
@@ -85,6 +86,10 @@ export function render(state, now = new Date()) {
   }).format(now));
   setText('humidity', `${number(weather.humidity)} %`);
   setText('wind', `${number(weather.wind)} km/h`);
+  // Keep cards mounted across clock ticks so their entrance does not replay.
+  const forecast = byId('forecast');
+  const signature = JSON.stringify([language, weather.days]);
+  if (forecast.dataset.forecast === signature && !enteringWeather) return;
   const cards = weather.days.map((day, index) => {
     const card = document.createElement('article');
     card.className = 'panel day';
@@ -96,8 +101,10 @@ export function render(state, now = new Date()) {
     range.className = 'range';
     range.textContent = `${t.high}: ${number(day.max)} °C · ${t.low}: ${number(day.min)} °C`;
     card.dataset.scene = weatherScene(day.code);
+    card.dataset.enter = String(enteringWeather);
     card.append(heading, condition, range);
     return card;
   });
-  byId('forecast').replaceChildren(...cards);
+  forecast.replaceChildren(...cards);
+  forecast.dataset.forecast = signature;
 }

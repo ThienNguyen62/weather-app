@@ -1,4 +1,4 @@
-git --version
+﻿git --version
 git init
 git status
 git remote add origin https://github.com/ThienNguyen62/weather-app
@@ -9,10 +9,11 @@ git status
 git add .
 git commit -m "feat: add project source code"
 git push -u origin main
-git ls-files // các file theo dõi
+# Liệt kê các tệp đang được Git theo dõi
+git ls-files
 
 
-nếu lỗi master và main
+# Nếu cần đổi tên nhánh từ master sang main
 git branch -M main
 git remote -v
 git push -u origin main

@@ -1,32 +1,23 @@
-# 04 ? Technical Design
+﻿# 04 — Thiết kế kỹ thuật
 
-C?p nh?t 2026-11-05, ??i chi?u source. HTML/CSS/JavaScript ES Modules, kh?ng build, backend hay database.
+**Cập nhật 05/11/2026.** HTML/CSS/JavaScript ES Modules; không build, backend hoặc database.
 
-## Lu?ng v? tr?ch nhi?m
+## Luồng
 
-`index.html` ? `src/app.js` ? Geocoding ? danh s?ch t?i ?a 5 ??a ?i?m ? ng??i d?ng ch?n ? Forecast 7 ng?y ? state ? `src/ui/render.js`.
+index.html → app.js → Geocoding → tối đa 5 địa điểm → chọn → Forecast → state → render.js. Từng request có timeout 20 giây, AbortController và finally mở lại form. Lỗi không được lưu vào history.
 
-- `services/geocoding.js`: t?n v? ng?n ng? ? m?ng `{id, name, country, admin1, latitude, longitude}`.
-- `services/weather.js`: t?a ?? ? `{timezone, time, temperature, humidity, wind, code, days}`; m?i ng?y `{date, code, max, min}`. Ki?m tra HTTP, tr??ng b?t bu?c, timezone h?p l? v? ??ng 7 ng?y li?n ti?p b?t ??u c?ng ng?y current.time.
-- `storage/preferences.js`: l?u VI/EN v? 5 ??a ?i?m m?i nh?t kh?ng tr?ng ID; kh?ng l?u th?i ti?t. JSON h?ng ho?c storage b? ch?n c? fallback.
-- `ui/render.js`: ch? c?p nh?t DOM b?ng textContent; kh?ng fetch ho?c ghi storage.
-- `ui/scene.js`: gi? hi?n t?i theo timezone ? day/night; WMO ? clear/cloudy/fog/rain/snow/storm/unknown.
-- `src/css/style.css`: b? c?c responsive, ?nh n?n n?i b? v? l?p th?i ti?t; reduced motion ng?ng chuy?n ??ng.
+Geocoding dùng count=5 và language; địa điểm là `{id,name,country,admin1,latitude,longitude}`. Forecast dùng forecast_days=7, timezone=auto, Celsius và km/h; trả dữ liệu chuẩn hóa `{timezone,time,temperature,humidity,wind,code,days}`. days có 7 phần tử `{date,code,max,min}`, liên tiếp từ ngày current.time. Kiểm tra HTTP/JSON/trường bắt buộc và timezone hợp lệ.
 
-## API v? d? li?u
+## Giao diện và nền
 
-Geocoding: `https://geocoding-api.open-meteo.com/v1/search` v?i `name`, `count=5`, `language`.
-Forecast: `https://api.open-meteo.com/v1/forecast` v?i t?a ?? ?? ch?n, `forecast_days=7`, `timezone=auto`, Celsius, km/h. Current g?m temperature_2m, relative_humidity_2m, weather_code, wind_speed_10m; daily g?m weather_code, temperature_2m_max/min.
+Hai trạng thái welcome/weather trong cùng HTML, không có chuyển trang vật lý. Mở app luôn welcome. Khung nền `.sky` dùng `assets/welcome.jpg`. Hai lớp `.sky-day` và `.sky-night` dùng ảnh WebP nội bộ; khi weather, chỉ lớp ứng với giờ địa điểm có opacity 1. Chuyển opacity 0.8 giây tạo crossfade và giữ màu dự phòng nếu ảnh không tải được.
 
-M?i thao t?c t?m/ch?n c? AbortController v? timeout 20 gi?y ri?ng. Trong l?c ch? kh?a t?m/ch?n/x?a; v?n ??i VI/EN. finally m? l?i form. T?m m?i ?n k?t qu? c?. Ch? th?m l?ch s? sau Forecast th?nh c?ng.
+scene.js dùng đồng hồ hiện tại ở timezone địa điểm: 04:00 ≤ giờ < 18:00 là ngày; ngoài khoảng là đêm. app.js tick theo phút và visibilitychange. Giờ dữ liệu current.time hiển thị riêng, không dùng làm đồng hồ hiện tại. Lớp CSS mây/mưa/sương/tuyết bổ sung cho ảnh; mô tả chữ luôn còn.
 
-## Giao di?n v? th?i gian
+Sau khi chuyển sang weather, mô tả xuất hiện ở 0.2s, số liệu 0.35s, tiêu đề forecast 0.5s; bảy thẻ bắt đầu từ 0.65s, cách nhau 0.07s. render giữ forecast DOM khi ngôn ngữ/days không đổi; đổi VI/EN tạo thẻ không có entrance. Quay về welcome rồi chọn lại sẽ phát hiệu ứng mới. prefers-reduced-motion tắt animation và transition.
 
-Hai tr?ng th?i trong c?ng index.html: welcome v? weather, kh?ng ?i?u h??ng sang file HTML kh?c. M? trang lu?n welcome. Th?nh c?ng hi?n th? th?i ti?t; ??i ??a ?i?m quay l?i l?i ch?o.
-?nh `assets/sky-day.webp`, `assets/sky-night.webp` ???c t?o ri?ng cho d? ?n; background-size cover, m?u t?i d? ph?ng. Kh?ng t?i ?nh t? host b?n ngo?i.
-Ban ng?y l? [04:00, 18:00), d?ng ??ng h? hi?n t?i ? timezone th?nh ph?. Tick m?i ph?t v? visibilitychange c?p nh?t l?i; th?i ?i?m d? li?u API hi?n th? ri?ng, kh?ng coi l? ??ng h? hi?n t?i. ??y l? quy t?c s?n ph?m, kh?ng ph?i gi? m?t tr?i m?c/l?n ho?c AM/PM.
-D? b?o hi?n th? ch?, kh?ng c?n icon th?i ti?t. M?u/hi?u ?ng kh?ng thay th? m? t? ch?.
+## Module và xác minh
 
-## X?c minh
+app.js điều phối state; services kiểm tra dữ liệu; render.js chỉ cập nhật DOM qua textContent; scene.js tính giờ và nhóm WMO; preferences.js lưu VI/EN cùng tối đa 5 địa điểm không trùng, không lưu weather. CSS responsive từ mobile.
 
-Ch?y `node tests/logic.mjs`. API/DOM m? ph?ng kh?ng ch?ng minh layout ho?c t??ng th?ch tr?nh duy?t. Xem `06-test-plan.md` cho manual v? `05-backlog.md` cho tr?ng th?i. Ch?a push/deploy.
+Skill tái sử dụng tại `.agents/skills/weather-atmosphere-ui/SKILL.md`. Node test mô phỏng không xác minh hình ảnh chuyển động thật. Xem test plan và backlog; chưa deploy.

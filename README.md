@@ -1,37 +1,35 @@
-# Weather App
+﻿# Weather App
 
-?ng d?ng HTML/CSS/JavaScript thu?n d?ng Open-Meteo, kh?ng c?n npm ho?c b??c build.
+Ứng dụng HTML/CSS/JavaScript thuần, dùng Open-Meteo; không cần npm hoặc bước build.
 
-## Ch?y
+## Chạy và sử dụng
 
-M? th? m?c b?ng VS Code, nh?p ph?i index.html ? Open with Live Server. D?ng ??a ch? localhost do extension cung c?p, kh?ng m? file:// v? app d?ng ES Modules. C?n Internet ?? l?y d? li?u th?i ti?t.
+Mở thư mục trong VS Code, nhấp phải `index.html` → **Open with Live Server**. Dùng localhost, không mở bằng file:// vì ứng dụng dùng ES Modules. Cần Internet để tải thời tiết.
 
-## Ch?c n?ng
+- Mở trang luôn hiện lời chào trên ảnh `assets/welcome.jpg`, không tự gọi API.
+- Nhập ít nhất 2 ký tự, chọn một trong tối đa 5 địa điểm; tải thành công chuyển sang màn hình thời tiết.
+- Nền chuyển mờ sang `sky-day.webp` từ 04:00 đến trước 18:00, hoặc `sky-night.webp` trong thời gian còn lại, theo đồng hồ hiện tại ở timezone địa điểm.
+- Thông tin xuất hiện lần lượt: mô tả, số liệu, tiêu đề dự báo, từng thẻ của 7 ngày. Đổi VI/EN hoặc tick đồng hồ không phát lại hiệu ứng. Chế độ giảm chuyển động tắt hiệu ứng.
+- Hiển thị °C, độ ẩm %, gió km/h, thời điểm dữ liệu và hôm nay cùng 6 ngày kế tiếp. Lớp mây/mưa/sương/tuyết bổ sung cho nền; luôn có mô tả bằng chữ.
+- Lưu VI/EN và 5 địa điểm gần nhất không trùng ID; chỉ lưu khi Forecast thành công. Chọn lịch sử lấy thời tiết mới; có nút xóa.
+- Đổi địa điểm quay lại ảnh welcome. Storage hỏng/bị chặn có fallback; request có timeout 20 giây.
 
-- Trang m? ??u v?i n?n b?u tr?i; nh?p ?t nh?t 2 k? t? v? ch?n m?t trong t?i ?a 5 ??a ?i?m.
-- M?n h?nh th?i ti?t to?n m?n h?nh: m? t? ch?, nhi?t ?? ?C, ?? ?m %, gi? km/h v? th?i ?i?m d? li?u.
-- N?n ng?y/??m v?i ?nh ri?ng v? l?p m?y, m?a, s??ng, tuy?t theo th?i ti?t. Ban ng?y t? 04:00 ??n tr??c 18:00 theo gi? hi?n t?i t?i ??a ?i?m, c?n l?i l? ban ??m. T? c?p nh?t m?i ph?t ho?c khi quay l?i tab.
-- D? b?o h?m nay v? 6 ng?y ti?p theo; m?i ng?y c? max/min v? m? t?.
-- VI/EN ???c l?u; l?ch s? t?i ?a 5 ??a ?i?m kh?ng tr?ng, ch? l?u sau khi t?i th?nh c?ng. Ch?n l?ch s? t?i d? li?u m?i; c? n?t x?a.
-- ??i ??a ?i?m quay l?i trang ch?o m?ng. Reload kh?ng t? t?i th?i ti?t.
-- Validate input, loading, kh?ng t?m th?y, l?i HTTP/JSON/d? li?u/m?ng v? timeout 20 gi?y. Storage b? ch?n kh?ng l?m d?ng app.
+## Source và kiểm thử
 
-## Source v? ki?m th?
+`src/app.js` điều phối state; services lấy và kiểm tra dữ liệu; `ui/render.js` hiển thị; `ui/scene.js` chọn ngày/đêm và trạng thái trời; storage lưu lựa chọn; i18n chứa VI/EN.
 
-app.js ?i?u ph?i state; services l?y v? ki?m tra d? li?u; ui/render.js hi?n th?; ui/scene.js ch?n n?n; storage/preferences.js l?u l?a ch?n; i18n/translations.js ch?a VI/EN. ?nh t?o ri?ng n?m trong assets; CSS d?ng m?u n?n d? ph?ng khi ?nh l?i.
+Chạy `node tests/logic.mjs` nếu máy có Node. Test dùng API/DOM mô phỏng, không thay thế kiểm tra API thật và layout.
 
-Ch?y `node tests/logic.mjs` n?u m?y c? Node. Test d?ng API v? DOM m? ph?ng; kh?ng thay th? ki?m tra API th?t, layout hay screen reader.
-
-- [B?n ?? source](doc/ver1/root.md)
-- [Requirements](doc/ver1/02-requirements.md)
+- [Bản đồ source](doc/ver1/root.md)
+- [Yêu cầu](doc/ver1/02-requirements.md)
 - [Backlog](doc/ver1/05-backlog.md)
-- [Test plan v? k?t qu?](doc/ver1/06-test-plan.md)
-- Skill thi?t k? t?i `.agents/skills/weather-atmosphere-ui/SKILL.md`; c? th? y?u c?u d?ng skill weather-atmosphere-ui ?? ti?p t?c ch?nh UI.
+- [Test plan](doc/ver1/06-test-plan.md)
+- [Skill thiết kế](.agents/skills/weather-atmosphere-ui/SKILL.md)
 
-## Gi?i h?n v? ph?t h?nh
+## Giới hạn và phát hành
 
-T?n ??a ?i?m gi? theo ng?n ng? API ? l?n t?m. N?n ph?n ?nh th?i ti?t hi?n t?i ?? t?i, kh?ng ph?i camera tr?c ti?p; ??ng h? n?n v? th?i ?i?m d? li?u l? hai th?ng tin kh?c nhau. Kh?ng t? l?m m?i d? li?u th?i ti?t.
+Ngày/đêm là quy tắc 04:00–18:00 do người dùng chọn, không phải AM/PM hoặc giờ mặt trời mọc/lặn. Đồng hồ nền cập nhật mỗi phút và khi quay lại tab; thời điểm dữ liệu API được hiển thị riêng. Không tự tải lại dữ liệu thời tiết.
 
-Ch?a x?c minh tr?nh duy?t ??y ?? ho?c deploy. Tr??c khi ph?t h?nh: ho?n t?t test plan tr?n localhost; ki?m tra ?i?u kho?n Open-Meteo; review diff v? commit; tr?n GitHub Pages ch?n Deploy from a branch, nh?nh ch?a source v? th? m?c /(root). Sau xu?t b?n ki?m tra l?i CSS/module, ?nh n?n, t?m/ch?n, 7 ng?y v? VI/EN. Kh?ng c?n framework ho?c workflow build.
+Cập nhật ngày **05/11/2026**. Chưa xác minh đầy đủ trên trình duyệt; chưa commit/push/deploy thay đổi này. Sau khi test localhost đạt yêu cầu, review và commit rồi cấu hình GitHub Pages từ nhánh chứa source, thư mục /(root); kiểm tra lại sau deploy.
 
-Ngu?n: [Open-Meteo](https://open-meteo.com/), [Forecast API](https://open-meteo.com/en/docs), [Geocoding API](https://open-meteo.com/en/docs/geocoding-api).
+Nguồn: [Open-Meteo](https://open-meteo.com/), [Forecast API](https://open-meteo.com/en/docs), [Geocoding API](https://open-meteo.com/en/docs/geocoding-api).

@@ -1,25 +1,18 @@
-# Weather App ? b?n ?? source
+﻿# Weather App — bản đồ source
 
-C?p nh?t 2026-11-05. Xem README ?? ch?y b?ng Live Server v? `05-backlog.md` ?? theo d?i ti?n ??.
+**Cập nhật 05/11/2026.** Chạy bằng Live Server theo README; tiến độ tại 05-backlog.md.
 
-## Lu?ng ??c code
+1. index.html: lời chào, form, danh sách, current, forecast và các lớp nền.
+2. src/app.js: state, submit, chọn địa điểm, history, VI/EN, Đổi địa điểm, tick mỗi phút và visibilitychange.
+3. src/services/: geocoding lấy tối đa 5 địa điểm; weather kiểm tra và chuẩn hóa current + 7 ngày.
+4. src/ui/render.js: state → DOM; giữ thẻ forecast qua tick để không lặp entrance. scene.js: WMO → nhóm trời và timezone → ngày/đêm.
+5. src/storage/preferences.js: lưu ngôn ngữ và 5 địa điểm không trùng, không lưu Forecast.
+6. src/i18n/translations.js: nhãn và mô tả VI/EN. src/css/style.css: responsive, lớp nền và animation.
 
-1. `../../index.html`: l?i ch?o, form, danh s?ch, m?n h?nh th?i ti?t v? v?ng d? b?o.
-2. `../../src/app.js`: state, submit, ch?n ??a ?i?m, l?ch s?, ng?n ng?, ??i ??a ?i?m; tick n?n m?i ph?t v? visibilitychange.
-3. `../../src/services/geocoding.js`: t?m t?i ?a 5 ??a ?i?m; `weather.js`: Forecast 7 ng?y, validation v? chu?n h?a.
-4. `../../src/ui/render.js`: state ? DOM; `scene.js`: WMO ? hi?u ?ng v? timezone ? ng?y/??m.
-5. `../../src/storage/preferences.js`: VI/EN v? 5 ??a ?i?m kh?ng tr?ng ID, kh?ng l?u Forecast.
-6. `../../src/i18n/translations.js`: nh?n v? m? t? VI/EN.
-7. `../../src/css/style.css`: ?nh n?n ng?y/??m, l?p th?i ti?t, responsive v? reduced motion.
+## Ảnh và hiệu ứng
 
-?nh n?n n?m ? `../../assets/`. Skill c?p nh?t thi?t k? ? `../../.agents/skills/weather-atmosphere-ui/SKILL.md`.
+assets/welcome.jpg dành cho màn hình mở đầu. assets/sky-day.webp dành cho weather từ 04:00 đến trước 18:00; sky-night.webp dùng thời gian còn lại theo đồng hồ địa điểm. Nền crossfade rồi nội dung lần lượt hiện; reduced motion bỏ chuyển động. Không dùng giờ quan trắc cũ hoặc giờ máy để chọn nền.
 
-## Quy t?c quan tr?ng
+Skill tại .agents/skills/weather-atmosphere-ui/SKILL.md mô tả các quy tắc để cập nhật UI tiếp. Xem 04-technical-design.md để biết timing và 06-test-plan.md để xác minh.
 
-M? trang lu?n hi?n l?i ch?o, kh?ng t? g?i API. T?m ? ch?n ??a ?i?m ? Forecast ? state ? render. History ch? ghi khi Forecast th?nh c?ng. T?m m?i ?n d? li?u c?. M?i request c? timeout 20 gi?y; finally m? l?i form.
-
-N?n d?ng ??ng h? hi?n t?i ? timezone ??a ?i?m: 04:00 ? gi? < 18:00 l? ng?y. Th?i ?i?m quan tr?c API ???c hi?n th? ri?ng, gi? nguy?n gi? ??a ph??ng. Tick kh?ng fetch th?i ti?t m?i. Kh?ng d?ng quy t?c AM/PM ?? ch?n n?n.
-
-## X?c minh
-
-`node tests/logic.mjs` Pass v?i API/DOM m? ph?ng; kh?ng x?c nh?n layout, API th?t ho?c accessibility. Manual ch?a ch?y do browser access host kh?ng kh? d?ng. Kh?ng coi task Done tr??c test v? commit.
+Node Pass với API/DOM mô phỏng không chứng minh layout, ảnh chuyển cảnh hoặc accessibility thực tế. Chưa hoàn tất manual/deploy.

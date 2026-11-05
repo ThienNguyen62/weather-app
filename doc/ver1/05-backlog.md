@@ -1,38 +1,35 @@
-# 05 ? Product Backlog
+﻿# 05 — Product Backlog
 
-Ngu?n theo d?i ch?nh: `doc/ver1/05-backlog.md`. Ch? m?t task Doing. C? source ho?c test Node Pass ch?a ??ng ngh?a Done.
+**Cập nhật 05/11/2026.** Nguồn tiến độ chính: doc/ver1/05-backlog.md. Chỉ một task Doing; có source hoặc Node Pass chưa đồng nghĩa Done.
 
-## Backlog
-
-| Task | N?i dung | Tr?ng th?i |
+| Task | Nội dung | Trạng thái |
 |---|---|---|
-| T-01 | Kh?i t?o c?u tr?c v? t?i li?u | Done ? skeleton ban ??u |
-| T-02 | ??ng b? requirements, stories, thi?t k? v? README | To Do ? ?? c?p nh?t, ch? review v? commit |
-| T-03 | Giao di?n responsive | To Do ? ?? c? source, ch? tr?nh duy?t |
-| T-04 | T?m/ch?n t?i ?a 5 ??a ?i?m | To Do ? test m? ph?ng Pass, ch? API th?t |
-| T-05 | Current v? Forecast 7 ng?y | To Do ? test m? ph?ng Pass, ch? API th?t |
-| T-06 | Render current v? 7 ng?y | To Do ? test m? ph?ng Pass, ch? tr?nh duy?t |
-| T-07 | VI/EN v? m? WMO | To Do ? test m? ph?ng Pass, ch? tr?nh duy?t |
-| T-08 | Loading, validation v? l?i | To Do ? c?n ho?n t?t manual |
-| T-09 | Ghi ngu?n Open-Meteo | To Do ? source c?, ch? m? li?n k?t th?c t? |
-| T-10 | Manual testing v? s?a l?i | To Do ? ch? ki?m tra UI-02 |
-| T-11 | Chu?n b? GitHub Pages v? ph?t h?nh | To Do ? ch?a push/deploy |
-| UI-01 | Giao di?n xanh v? SVG tr??c ??y | To Do ? ???c thay th? b?i thi?t k? UI-02; kh?ng ghi Done |
-| UI-02 | Trang ch?o m?ng, n?n ng?y/??m theo th?i ti?t, 7 ng?y, skill thi?t k? | Doing ? source v? test logic ?? c?p nh?t; ch? ki?m tra giao di?n |
+| T-01 | Cấu trúc và tài liệu ban đầu | Done — skeleton lịch sử |
+| T-02 | Đồng bộ yêu cầu và tài liệu | To Do — đã cập nhật; chờ review/commit |
+| T-03 | Responsive | To Do — source có, chờ trình duyệt |
+| T-04 | Tìm/chọn tối đa 5 địa điểm | To Do — mock Pass, chờ API thật |
+| T-05 | Current và Forecast 7 ngày | To Do — mock Pass, chờ API thật |
+| T-06 | Render current và 7 ngày | To Do — mock Pass, chờ trình duyệt |
+| T-07 | VI/EN và mô tả WMO | To Do — mock Pass, chờ trình duyệt |
+| T-08 | Loading, validation, lỗi | To Do — chờ manual |
+| T-09 | Ghi nguồn | To Do — chờ mở liên kết thật |
+| T-10 | Manual và sửa lỗi | To Do — sau UI-02 |
+| T-11 | GitHub Pages và release | To Do — chưa deploy |
+| UI-01 | Giao diện xanh/SVG cũ | To Do — được thay thế bằng UI-02, không coi Done |
+| UI-02 | Welcome, nền ngày/đêm, 7 ngày, skill và chuyển cảnh | Doing — chờ xác minh trình duyệt |
 
 ## Definition of Done
 
-- ??t Acceptance Criteria; ghi b?ng ch?ng Pass/Fail trong test plan.
-- Ch?y tr?n localhost, ki?m tra tr?nh duy?t; kh?ng c?n l?i Blocker/Major.
-- C?p nh?t t?i li?u v? commit Git.
-- V?i release: ki?m tra c? b?n deploy tr??c khi Done.
+Đạt AC, có bằng chứng trong test plan; chạy localhost không lỗi nghiêm trọng; tài liệu đúng và đã commit. Release cần kiểm tra bản deploy.
 
-## Nh?t k?
+## Nhật ký 05/11/2026
 
-- 2026-10-21: t?o skeleton v? baseline V1 ban ??u, ch?a c? ch?c n?ng t?i th?i ?i?m ??.
-- 2026-11-04: ?? c? source ch?n ??a ?i?m, l?ch s?, VI/EN v? UI xanh; th?m root.md. Ki?m th? m? ph?ng Pass; manual ch?a ho?n t?t.
-- 2026-11-05: ng??i d?ng y?u c?u UI theo ?nh tham chi?u, trang ch?o m?ng, n?n ng?y/??m (04:00?17:59 theo ??a ?i?m), d? b?o 7 ng?y v? skill t?i s? d?ng. C?p nh?t source, ?nh WebP n?i b?, t?i li?u v? tests. Test Node Pass. Browser inventory b?o browser access host unavailable; kh?ng ghi manual Pass. Ch?a commit, push hay deploy.
+- Giữ chọn địa điểm và lịch sử; chuyển dự báo từ 3 lên 7 ngày. Tạo ảnh sky-day.webp/sky-night.webp và skill weather-atmosphere-ui.
+- Bổ sung ảnh welcome.jpg do người dùng cung cấp cho trang mở đầu. Chỉ màn hình weather dùng sky-day trong [04:00,18:00) và sky-night thời gian còn lại, theo giờ hiện tại của địa điểm.
+- Thêm crossfade nền, nội dung xuất hiện tuần tự và 7 thẻ lệch nhịp; không phát lại khi tick/đổi VI/EN; hỗ trợ reduced motion.
+- Sửa tiếng Việt lỗi mã hóa trong tài liệu của lần cập nhật trước; đồng bộ requirements, stories, thiết kế và hướng dẫn chạy.
+- Test logic dùng API/DOM mô phỏng; ca trình duyệt chưa chạy do browser access host không khả dụng ở lần kiểm tra trước. Không suy ra manual Pass. Thay đổi hiện tại chưa commit/push/deploy.
 
-## B??c k? ti?p
+## Bước kế tiếp
 
-M? Live Server v? ki?m tra UI-02 ? 360/768/1280px; th?c hi?n c?c ca trong 06-test-plan.md, s?a l?i v? ki?m tra l?i. Sau ?? review t?i li?u, chu?n b? commit v? GitHub Pages ?? ng??i d?ng duy?t tr??c xu?t b?n.
+Mở Live Server, kiểm tra welcome → chọn → thời tiết → Đổi địa điểm ở 360/768/1280px; ghi Pass/Fail và sửa lỗi trước khi đánh dấu Done.

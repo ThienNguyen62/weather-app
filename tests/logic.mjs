@@ -95,6 +95,7 @@ assert.equal(document.documentElement.dataset.view, 'weather');
 assert.equal(el('results').hidden, false);
 assert.equal(el('temperature').textContent, '22 °C');
 assert.equal(el('forecast').children.length, 7);
+assert.ok(el('forecast').children.every(card => card.dataset.enter === 'true'), 'first selection reveals all seven cards');
 assert.deepEqual(loadHistory().map(x => x.id), [2]);
 await choose('recent-options'); assert.equal(calls.length, 3, 'history fetches fresh weather');
 assert.equal(loadHistory().length, 1);
@@ -124,8 +125,12 @@ assert.equal(normalized.days.length, 7);
 const sceneState = { language: 'vi', weather: normalized, city: city(1), candidates: [], history: [], loading: false, message: 'success' };
 render(sceneState, new Date('2026-11-05T18:59:00Z')); // Tokyo 03:59
 assert.equal(document.documentElement.dataset.period, 'night');
+const mountedCards = [...el('forecast').children];
 render(sceneState, new Date('2026-11-05T19:00:00Z')); // Tokyo 04:00
 assert.equal(document.documentElement.dataset.period, 'day');
+el('forecast').children.forEach((card, index) => assert.equal(card, mountedCards[index], 'clock tick keeps card DOM mounted'));
+render({ ...sceneState, language: 'en' }, new Date('2026-11-05T19:00:00Z'));
+assert.ok(el('forecast').children.every(card => card.dataset.enter === 'false'), 'language change must not replay entrance');
 render(sceneState, new Date('2026-11-06T08:59:00Z')); // Tokyo 17:59
 assert.equal(document.documentElement.dataset.period, 'day');
 render(sceneState, new Date('2026-11-06T09:00:00Z')); // Tokyo 18:00

@@ -1,88 +1,38 @@
-# 02 — Software Requirements (V1)
+﻿# 02 — Yêu cầu phần mềm V1
 
-**Status:** V1 Requirements 1.0 — đã xác nhận ngày 2026-10-21.
-**Quy ước:** FR = Functional Requirement; NFR = Non-functional Requirement.  
-**Ưu tiên:** Must = bắt buộc với V1.
+**Baseline 1.1 — cập nhật theo yêu cầu ngày 05/11/2026; chờ xác minh đầy đủ.**
 
-## 1. Functional Requirements
+## Chức năng bắt buộc
 
-| ID | Ưu tiên | Mô tả yêu cầu | Ghi chú |
-|---|---|---|---|
-| FR-01 | Must | Người dùng nhập tên thành phố và khởi tạo tìm kiếm bằng nút hoặc Enter. | Bỏ khoảng trắng đầu/cuối; input tối thiểu 2 ký tự. |
-| FR-02 | Must | Ứng dụng tra cứu tên thành phố và xác định một địa điểm. | V1 sử dụng kết quả phù hợp đầu tiên, hiển thị tên + quốc gia. |
-| FR-03 | Must | Hiển thị nhiệt độ hiện tại và thời điểm quan trắc/dữ liệu của địa điểm. | Đơn vị °C; thời gian cần có nhãn rõ ràng. |
-| FR-04 | Must | Hiển thị tình trạng thời tiết hiện tại bằng mô tả dễ hiểu. | Từ mã thời tiết của API; VI/EN. |
-| FR-05 | Must | Hiển thị độ ẩm tương đối (%) và tốc độ gió (km/h) hiện tại. | Không dùng dữ liệu giả khi có lỗi. |
-| FR-06 | Must | Hiển thị dự báo của 3 ngày theo ngày địa phương của địa điểm. | Gồm hôm nay + 2 ngày sau; mỗi ngày có ngày, max/min nhiệt độ, trạng thái thời tiết. |
-| FR-07 | Must | Người dùng chuyển giữa giao diện tiếng Việt và tiếng Anh. | Mặc định tiếng Việt; cập nhật các nhãn và mô tả thời tiết. |
-| FR-08 | Must | Hiển thị đúng các trạng thái: ban đầu, đang tải, input sai, không tìm thấy và lỗi yêu cầu API/mạng. | Không hiển thị dữ liệu giả như dữ liệu thật. |
-| FR-09 | Must | Hiển thị đường dẫn ghi nguồn dữ liệu Open-Meteo trên giao diện thời tiết. | Chèn liên kết đến website nhà cung cấp. |
-
-| FR-10 | Must | L?u t?i ?a 5 ??a ?i?m g?n ??y, kh?ng tr?ng ID, m?i nh?t tr??c. | Ch? l?u sau Forecast th?nh c?ng; ch?n l?ch s? l?y d? li?u m?i; c? n?t x?a. Storage l?i kh?ng l?m app ng?ng ho?t ??ng. |
-| FR-11 | Must | Khi m? trang lu?n hi?n l?i ch?o v? ? ch?n ??a ?i?m. | Kh?ng t? g?i API; c? n?t ??i ??a ?i?m ?? quay l?i. |
-| FR-12 | Must | N?n b?u tr?i thay cho icon th?i ti?t; gi? m? t? b?ng ch?. | ?nh ng?y/??m, l?p m?y/m?a/s??ng/tuy?t theo m? WMO; m? l? d?ng n?n trung t?nh. |
-| FR-13 | Must | N?n ng?y t? 04:00 ??n tr??c 18:00, c?n l?i n?n ??m. | Theo ??ng h? hi?n t?i t?i timezone ??a ?i?m, c?p nh?t m?i ph?t v? khi tr? l?i tab; kh?ng d?a v?o AM/PM. |
-
-## 2. Non-functional Requirements
-
-| ID | Ưu tiên | Yêu cầu có thể kiểm tra |
-|---|---|---|
-| NFR-01 | Must | Giao diện dùng được từ chiều rộng viewport 360px, không tràn ngang ở màn hình chính. |
-| NFR-02 | Must | Chạy trên các bản cập nhật gần đây của Chrome, Edge và Firefox. |
-| NFR-03 | Must | Không yêu cầu đăng nhập, database, backend tự xây dựng hoặc thu thập dữ liệu cá nhân. |
-| NFR-04 | Must | Dùng đơn vị hiển thị thống nhất: °C, %, km/h; phân biệt thời tiết hiện tại với dự báo. |
-| NFR-05 | Must | Form có nhãn truy cập được; có thể tìm bằng bàn phím (Enter); thông báo lỗi ở vùng dễ nhận thấy. |
-| NFR-06 | Must | Khi mất kết nối/nhận phản hồi lỗi, website hiển thị thông báo dễ hiểu thay vì bị treo hoặc hiển thị giá trị giả. |
-| NFR-07 | Should | Tên hàm và module có trách nhiệm rõ ràng, tách logic API ra khỏi logic hiển thị để dễ phát triển V2. |
-
-`Should` trong NFR-07 là quy ước nội bộ của project, không phải yêu cầu về một framework.
-
-## 3. Dữ liệu cần hiển thị
-
-### Thời tiết hiện tại
-
-- Thành phố và quốc gia.
-- Nhiệt độ `temperature_2m`.
-- Độ ẩm `relative_humidity_2m`.
-- Tốc độ gió `wind_speed_10m`.
-- Mô tả trạng thái dựa vào `weather_code`.
-- Thời điểm dữ liệu `current.time` (hiển thị rõ theo địa phương nếu triển khai chuyển đổi thời gian).
-
-### Dự báo hằng ngày
-
-- Ngày `daily.time`.
-- Nhiệt độ tối đa `temperature_2m_max`.
-- Nhiệt độ tối thiểu `temperature_2m_min`.
-- Mã trạng thái `weather_code` → mô tả VI/EN.
-- 3 ngày tính cả hôm nay, theo timezone của địa điểm (`timezone=auto`).
-
-## 4. Quy tắc xử lý tình huống
-
-| Tình huống | Hành vi mong muốn |
+| ID | Yêu cầu |
 |---|---|
-| Ô tìm kiếm rỗng hoặc dưới 2 ký tự sau khi trim | Báo người dùng nhập tối thiểu 2 ký tự; không gọi API. |
-| Không tìm thấy địa điểm | Thông báo không tìm thấy, không hiển thị thông tin mới giả định. |
-| Thành phố trùng tên | Chọn kết quả đầu tiên trong V1 và hiển thị quốc gia để nhận diện. |
-| Đang chờ phản hồi | Hiện Loading / Đang tải; tránh gửi nhiều lần ngoài ý muốn. |
-| Mất mạng / API phản hồi lỗi | Hiện thông báo lỗi; không coi request lỗi là kết quả thành công. |
-| Dữ liệu thời tiết thiếu trường bắt buộc | Hiện lỗi tải dữ liệu; không hiển thị `undefined`/`NaN`. |
-| Đổi ngôn ngữ sau khi có dữ liệu | Nhãn và mô tả thời tiết chuyển ngôn ngữ; giá trị số giữ nguyên. |
+| FR-01 | Tìm bằng nút hoặc Enter; trim, tối thiểu 2 ký tự; input sai không gọi API. |
+| FR-02 | Hiện tối đa 5 địa điểm, có tên, tỉnh/bang nếu có, quốc gia; chỉ gọi Forecast sau khi chọn, theo đúng tọa độ. |
+| FR-03 | Hiện nhiệt độ °C và thời điểm dữ liệu theo giờ địa điểm, ghi nhãn rõ. |
+| FR-04 | Mô tả WMO bằng VI/EN; mã lạ có mô tả dự phòng. |
+| FR-05 | Độ ẩm %, gió km/h; không dùng dữ liệu giả khi lỗi. |
+| FR-06 | Đúng 7 ngày liên tiếp: hôm nay và 6 ngày sau theo địa điểm; mỗi ngày có ngày, max/min và mô tả. |
+| FR-07 | Đổi VI/EN không reload/fetch lại; lưu lựa chọn, mặc định VI khi chưa lưu. |
+| FR-08 | Trạng thái ban đầu, tìm/chờ tải, input sai, không tìm thấy, lỗi API/mạng/JSON/dữ liệu, timeout 20 giây; luôn mở lại form để thử lại. |
+| FR-09 | Liên kết ghi nguồn Open-Meteo mở được. |
+| FR-10 | Lưu 5 địa điểm mới nhất, không trùng ID, chỉ sau Forecast thành công; chọn lịch sử tải mới; có nút xóa; storage lỗi không làm app dừng. |
+| FR-11 | Mở trang luôn có lời chào và welcome.jpg; không tự fetch. Đổi địa điểm trở về lời chào. |
+| FR-12 | Sau chọn thành công, dùng sky-day.webp/sky-night.webp và lớp thời tiết thay icon; giữ chữ mô tả và màu nền dự phòng. |
+| FR-13 | Ban ngày là [04:00,18:00), còn lại đêm, theo đồng hồ hiện tại ở IANA timezone địa điểm; cập nhật mỗi phút và khi tab hiện lại. |
+| FR-14 | Nền crossfade trước; mô tả → số liệu → tiêu đề dự báo → 7 thẻ lần lượt xuất hiện. Tick/đổi VI/EN không phát lại; reduced motion tắt animation/transition. |
 
-## 5. Constraints / Ràng buộc dự án
+## Phi chức năng
 
-- JavaScript thuần, không dùng framework frontend ở V1.
-- Dùng Open-Meteo Geocoding và Forecast API; không cần API key cho sử dụng phi thương mại theo điều khoản hiện hành.
-- Không triển khai cơ chế lưu thông tin cá nhân.
-- Chỉ kiểm thử thủ công trong V1; automation tests có thể thêm sau.
+| ID | Yêu cầu |
+|---|---|
+| NFR-01 | Dùng được từ 360px, không tràn ngang. |
+| NFR-02 | Kiểm tra Chrome, Edge và Firefox hiện có trên máy kiểm thử. |
+| NFR-03 | Không đăng nhập, backend, database hoặc thu thập thông tin cá nhân. |
+| NFR-04 | Đơn vị nhất quán: °C, %, km/h; phân biệt current và forecast. |
+| NFR-05 | Form có label; Tab/Enter dùng được, focus rõ, thông báo dễ đọc, reduced motion được tôn trọng. |
+| NFR-06 | Lỗi không gây treo form hoặc hiển thị undefined/NaN. |
+| NFR-07 | Tách service/state/render/storage để dễ học và bảo trì. |
 
-## 6. Traceability
+JavaScript thuần, ảnh nội bộ, không công cụ build. Node tests mô phỏng bổ sung cho manual; không coi là bằng chứng layout. Tên địa điểm giữ theo kết quả tìm. Không lưu Forecast. Quy tắc ngày/đêm không phải AM/PM hoặc sunrise/sunset.
 
-- User Stories và Acceptance Criteria: [`03-user-stories.md`](03-user-stories.md).
-- Sơ đồ dữ liệu, mapping các trường API: [`04-technical-design.md`](04-technical-design.md).
-- Bộ test case: [`06-test-plan.md`](06-test-plan.md).
-
-## 7. Quy trình chốt requirements
-
-- [x] Đọc lại FR-01 đến FR-09 và NFR-01 đến NFR-07.
-- [x] Điều chỉnh những quyết định đang là mặc định nếu cần.
-- [x] Chốt bản baseline là `V1 Requirements 1.1` trước khi hoàn thành Implementation.
+Xem [stories](03-user-stories.md), [thiết kế](04-technical-design.md), [kiểm thử](06-test-plan.md).
