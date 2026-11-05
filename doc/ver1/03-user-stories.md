@@ -1,6 +1,6 @@
 # 03 — User Stories & Acceptance Criteria
 
-**Status:** Draft 0.1.
+**Status:** Ph?m vi c?p nh?t 2026-11-05, ch? ki?m th?.
 
 Công thức: **As a [user], I want [capability], so that [benefit].**  
 Acceptance Criteria (AC) là điều kiện quan sát/kiểm thử được để chấp nhận story.
@@ -80,6 +80,14 @@ Acceptance Criteria (AC) là điều kiện quan sát/kiểm thử được đ�
 
 - AC-06.1: Giao diện hiển thị liên kết nguồn dữ liệu đến Open-Meteo khi hiển thị thời tiết.
 - AC-06.2: Liên kết có tên dễ hiểu và có thể mở được.
+
+## US-07 ? M? ??u v? b?u tr?i ??a ph??ng
+
+- Khi m? trang th?y l?i ch?o, t?m ki?m v? l?ch s? n?u c?, kh?ng t? fetch.
+- Ch?n ??a ?i?m th?nh c?ng chuy?n sang m?n h?nh th?i ti?t, c? ??i ??a ?i?m quay l?i.
+- Gi? m? t? ch?; n?n ??i theo th?i ti?t v? gi? hi?n t?i c?a ??a ?i?m: 04:00?17:59 ng?y, 18:00?03:59 ??m.
+- Reload gi? ng?n ng? v? t?i ?a 5 ??a ?i?m, kh?ng l?u Forecast; x?a l?ch s? kh?ng x?a ng?n ng?.
+- Storage h?ng/b? ch?n kh?ng l?m ?ng d?ng d?ng.
 
 ## Definition of Done áp dụng cho mọi User Story
 

@@ -91,4 +91,25 @@ document.getElementById('language').addEventListener('click', () => {
   saveLanguage(state.language);
   render(state);
 });
+document.getElementById('home').addEventListener('click', () => {
+  if (state.loading) return;
+  state.city = null;
+  state.weather = null;
+  state.candidates = [];
+  state.message = 'initial';
+  state.error = false;
+  render(state);
+  input.focus();
+});
+// Keep the scene in sync across 04:00/18:00 and after a sleeping tab wakes.
+if (typeof window !== 'undefined') {
+  const tick = () => {
+    if (state.weather) render(state);
+    window.setTimeout(tick, 60000 - Date.now() % 60000);
+  };
+  window.setTimeout(tick, 60000 - Date.now() % 60000);
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden && state.weather) render(state);
+  });
+}
 render(state);

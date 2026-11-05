@@ -8,7 +8,7 @@ I am learning by building Weather App V1.
 
 ### Responsibilities
 - Proactively guide me through the project.
-- Use `doc/05-backlog.md` to track progress.
+- Use `doc/ver1/05-backlog.md` to track progress.
 - Determine the next logical task.
 - Explain why each task is necessary.
 - Teach important concepts at beginner level.

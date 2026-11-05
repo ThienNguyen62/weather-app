@@ -1,9 +1,10 @@
-﻿export const translations = {
+export const translations = {
   vi: {
-    eyebrow: 'THỜI TIẾT MỖI NGÀY', heading: 'Hôm nay, trời thế nào?', subtitle: 'Tìm một thành phố. Chuẩn bị cho ngày của bạn.',
+    eyebrow: 'THỜI TIẾT MỖI NGÀY', heading: 'Chào ngày mới. Đón mọi thời tiết.', subtitle: 'Tìm một thành phố. Chuẩn bị cho ngày của bạn.',
     cityLabel: 'Tên thành phố', search: 'Tìm kiếm', placeholder: 'Ví dụ: Hanoi, Tokyo, London',
     hint: 'Chọn địa điểm phù hợp từ kết quả tìm kiếm.', current: 'THỜI TIẾT HIỆN TẠI', humidity: 'Độ ẩm', wind: 'Tốc độ gió',
-    forecast: 'Dự báo 3 ngày', forecastHint: 'Hôm nay và hai ngày tiếp theo · Theo giờ địa phương',
+    forecast: 'Thời tiết 7 ngày tới', forecastHint: 'Hôm nay và sáu ngày tiếp theo · Theo giờ địa phương',
+    home: 'Đổi địa điểm', day: 'Ban ngày', night: 'Ban đêm', welcomeNote: 'BẦU TRỜI THAY ĐỔI. KẾ HOẠCH VẪN TRONG TAY.',
     source: 'Dữ liệu thời tiết:', note: 'Dự báo có thể thay đổi theo thời gian.',
     initial: 'Nhập tên thành phố để xem thời tiết.', loading: 'Đang tải thời tiết…',
     invalid: 'Vui lòng nhập tên thành phố có ít nhất 2 ký tự.', notFound: 'Không tìm thấy thành phố. Hãy thử tên khác.',
@@ -14,10 +15,11 @@
     choicesTitle: 'Chọn thành phố', recentTitle: 'Địa điểm gần đây', clearHistory: 'Xóa lịch sử',
   },
   en: {
-    eyebrow: 'EVERYDAY WEATHER', heading: 'What’s the weather today?', subtitle: 'Find a city. Get ready for your day.',
+    eyebrow: 'EVERYDAY WEATHER', heading: 'A new day. A world of weather.', subtitle: 'Find a city. Get ready for your day.',
     cityLabel: 'City name', search: 'Search', placeholder: 'Try Hanoi, Tokyo, London',
     hint: 'Choose the correct place from the search results.', current: 'CURRENT WEATHER', humidity: 'Humidity', wind: 'Wind speed',
-    forecast: '3-day forecast', forecastHint: 'Today and the next two days · Local time',
+    forecast: 'Your week ahead', forecastHint: 'Today and the next six days · Local time',
+    home: 'Change location', day: 'Daytime', night: 'Nighttime', welcomeNote: 'CHANGING SKIES. CLEARER PLANS.',
     source: 'Weather data:', note: 'Forecasts may change over time.',
     initial: 'Enter a city name to see the weather.', loading: 'Loading weather…',
     invalid: 'Please enter a city name with at least 2 characters.', notFound: 'City not found. Try another name.',

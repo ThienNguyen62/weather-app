@@ -1,4 +1,5 @@
-﻿import { translations, describeWeather } from '../i18n/translations.js';
+import { translations, describeWeather } from '../i18n/translations.js';
+import { localHour, periodForHour, weatherScene } from './scene.js';
 
 const byId = id => document.getElementById(id);
 const setText = (id, value) => { byId(id).textContent = value; };
@@ -13,19 +14,6 @@ export function weatherIconName(code) {
   if ([71, 73, 75, 77, 85, 86].includes(code)) return 'snow';
   if ([95, 96, 99].includes(code)) return 'storm';
   return 'unknown';
-}
-
-function createWeatherIcon(code) {
-  const name = weatherIconName(code);
-  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-  svg.setAttribute('class', `icon weather-${name}`);
-  svg.setAttribute('viewBox', '0 0 48 48');
-  svg.setAttribute('aria-hidden', 'true');
-  svg.setAttribute('focusable', 'false');
-  const use = document.createElementNS('http://www.w3.org/2000/svg', 'use');
-  use.setAttribute('href', `#icon-${name}`);
-  svg.append(use);
-  return svg;
 }
 
 // API timestamps are local wall-clock strings. Format their components in UTC
@@ -59,10 +47,16 @@ function renderPlaces(id, cities, loading) {
   list.querySelectorAll('button').forEach(button => { button.disabled = loading; });
 }
 
-export function render(state) {
+export function render(state, now = new Date()) {
   const t = translations[state.language];
   const number = value => new Intl.NumberFormat(state.language === 'vi' ? 'vi-VN' : 'en-GB', { maximumFractionDigits: 1 }).format(value);
   document.documentElement.lang = state.language;
+  document.documentElement.dataset.view = state.weather ? 'weather' : 'welcome';
+  document.documentElement.dataset.period = state.weather
+    ? periodForHour(localHour(state.weather.timezone, now)) : 'day';
+  document.documentElement.dataset.scene = state.weather ? weatherScene(state.weather.code) : 'clear';
+  byId('welcome').hidden = !!state.weather;
+  byId('home').hidden = !state.weather;
   document.querySelectorAll('[data-i18n]').forEach(element => { element.textContent = t[element.dataset.i18n]; });
   byId('city').placeholder = t.placeholder;
   byId('city').setAttribute('aria-invalid', String(state.message === 'invalid'));
@@ -85,7 +79,10 @@ export function render(state) {
   setText('observed', `${t.observed}: ${formatDate(weather.time, language, true)} · ${weather.timezone}`);
   setText('temperature', `${number(weather.temperature)} °C`);
   setText('condition', describeWeather(weather.code, language));
-  byId('current-icon').replaceChildren(createWeatherIcon(weather.code));
+  setText('period', t[document.documentElement.dataset.period]);
+  setText('local-clock', new Intl.DateTimeFormat(language === 'vi' ? 'vi-VN' : 'en-GB', {
+    timeZone: weather.timezone, hour: '2-digit', minute: '2-digit', hourCycle: 'h23',
+  }).format(now));
   setText('humidity', `${number(weather.humidity)} %`);
   setText('wind', `${number(weather.wind)} km/h`);
   const cards = weather.days.map((day, index) => {
@@ -98,7 +95,8 @@ export function render(state) {
     const range = document.createElement('p');
     range.className = 'range';
     range.textContent = `${t.high}: ${number(day.max)} °C · ${t.low}: ${number(day.min)} °C`;
-    card.append(heading, createWeatherIcon(day.code), condition, range);
+    card.dataset.scene = weatherScene(day.code);
+    card.append(heading, condition, range);
     return card;
   });
   byId('forecast').replaceChildren(...cards);

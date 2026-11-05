@@ -18,6 +18,11 @@
 | FR-08 | Must | Hiển thị đúng các trạng thái: ban đầu, đang tải, input sai, không tìm thấy và lỗi yêu cầu API/mạng. | Không hiển thị dữ liệu giả như dữ liệu thật. |
 | FR-09 | Must | Hiển thị đường dẫn ghi nguồn dữ liệu Open-Meteo trên giao diện thời tiết. | Chèn liên kết đến website nhà cung cấp. |
 
+| FR-10 | Must | L?u t?i ?a 5 ??a ?i?m g?n ??y, kh?ng tr?ng ID, m?i nh?t tr??c. | Ch? l?u sau Forecast th?nh c?ng; ch?n l?ch s? l?y d? li?u m?i; c? n?t x?a. Storage l?i kh?ng l?m app ng?ng ho?t ??ng. |
+| FR-11 | Must | Khi m? trang lu?n hi?n l?i ch?o v? ? ch?n ??a ?i?m. | Kh?ng t? g?i API; c? n?t ??i ??a ?i?m ?? quay l?i. |
+| FR-12 | Must | N?n b?u tr?i thay cho icon th?i ti?t; gi? m? t? b?ng ch?. | ?nh ng?y/??m, l?p m?y/m?a/s??ng/tuy?t theo m? WMO; m? l? d?ng n?n trung t?nh. |
+| FR-13 | Must | N?n ng?y t? 04:00 ??n tr??c 18:00, c?n l?i n?n ??m. | Theo ??ng h? hi?n t?i t?i timezone ??a ?i?m, c?p nh?t m?i ph?t v? khi tr? l?i tab; kh?ng d?a v?o AM/PM. |
+
 ## 2. Non-functional Requirements
 
 | ID | Ưu tiên | Yêu cầu có thể kiểm tra |
@@ -80,4 +85,4 @@
 
 - [x] Đọc lại FR-01 đến FR-09 và NFR-01 đến NFR-07.
 - [x] Điều chỉnh những quyết định đang là mặc định nếu cần.
-- [x] Chốt bản baseline là `V1 Requirements 1.0` trước khi hoàn thành Implementation.
+- [x] Chốt bản baseline là `V1 Requirements 1.1` trước khi hoàn thành Implementation.

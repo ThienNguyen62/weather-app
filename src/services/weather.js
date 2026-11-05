@@ -1,11 +1,11 @@
-﻿// Normalize and validate API data before sending it to the UI.
+// Normalize and validate API data before sending it to the UI.
 export async function getWeather(city, signal) {
   const url = new URL('https://api.open-meteo.com/v1/forecast');
   url.search = new URLSearchParams({
     latitude: city.latitude, longitude: city.longitude,
     current: 'temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m',
     daily: 'weather_code,temperature_2m_max,temperature_2m_min',
-    forecast_days: '3', timezone: 'auto', temperature_unit: 'celsius', wind_speed_unit: 'kmh',
+    forecast_days: '7', timezone: 'auto', temperature_unit: 'celsius', wind_speed_unit: 'kmh',
   });
   const response = await fetch(url, { signal });
   if (!response.ok) throw new Error('apiError');
@@ -18,7 +18,9 @@ export async function getWeather(city, signal) {
       || typeof current.time !== 'string' || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test(current.time)
       || !numericFields.every(key => Number.isFinite(current[key]))
       || current.relative_humidity_2m < 0 || current.relative_humidity_2m > 100 || current.wind_speed_10m < 0
-      || !dailyFields.every(key => Array.isArray(daily[key]) && daily[key].length === 3)) throw new Error('dataError');
+      || !dailyFields.every(key => Array.isArray(daily[key]) && daily[key].length === 7)) throw new Error('dataError');
+  try { new Intl.DateTimeFormat('en', { timeZone: data.timezone }); }
+  catch { throw new Error('dataError'); }
   // Validate timestamps without converting them to the browser's timezone.
   const currentDate = new Date(current.time + ':00Z');
   if (!Number.isFinite(currentDate.getTime())

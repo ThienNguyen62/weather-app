@@ -1,64 +1,38 @@
-# 05 — Product Backlog & Quy trình Agile nhẹ
+# 05 ? Product Backlog
 
-**Phương pháp:** Kanban đơn giản cho một người làm.  
-**Cột công việc:** `To Do` → `Doing` → `Done`.  
-**Giới hạn:** một task `Doing` tại một thời điểm nếu có thể.
+Ngu?n theo d?i ch?nh: `doc/ver1/05-backlog.md`. Ch? m?t task Doing. C? source ho?c test Node Pass ch?a ??ng ngh?a Done.
 
-## 1. Backlog V1
+## Backlog
 
-| Task | Nội dung | Liên quan | Ưu tiên | Trạng thái |
-|---|---|---|---|---|
-| T-01 | Tạo cấu trúc thư mục và tài liệu nháp | Setup | Must | Done (skeleton only) |
-| T-02 | Xem lại và chốt requirements V1 | FR-01..09 | Must | Doing |
-| T-03 | Thiết kế giao diện tĩnh và responsive | NFR-01, NFR-05 | Must | To Do (?? c? source; ch? ki?m th?) |
-| T-04 | Viết chức năng tìm thành phố qua Geocoding API | US-01 | Must | To Do (?? c? source; ch? ki?m th?) |
-| T-05 | Viết chức năng lấy current + daily từ Forecast API | US-02, US-03 | Must | To Do (?? c? source; ch? ki?m th?) |
-| T-06 | Render thông tin hiện tại và dự báo 3 ngày | US-02, US-03 | Must | To Do (?? c? source; ch? ki?m th?) |
-| T-07 | Hoàn thiện VI/EN và mô tả mã thời tiết | US-04 | Must | To Do (?? c? source; ch? ki?m th?) |
-| T-08 | Loading, validate input, không tìm thấy, lỗi mạng | US-01, US-05 | Must | To Do (?? c? source; ch? ki?m th?) |
-| T-09 | Hiển thị ghi nguồn dữ liệu | US-06 | Must | To Do (?? c? source; ch? ki?m th?) |
-| T-10 | Manual testing và sửa lỗi | Tất cả | Must | To Do |
-| T-11 | Viết README hoàn chỉnh và deploy GitHub Pages | Release | Must | To Do |
-| UI-01 | Làm mới UI xanh dương, icon SVG, card chỉ số, bố cục mobile-first | T-03, T-06, T-07 | Must | Doing — đã viết và qua kiểm tra logic; chờ kiểm thử giao diện thực tế |
-
-**Ghi chú:** T-01 chỉ tạo tài liệu và các file code **rỗng**; chưa có giao diện hay tính năng nào được triển khai. Việc khởi tạo Git/GitHub sẽ thực hiện khi bắt đầu development.
-
-## 2. Cách sử dụng Kanban
-
-1. Chọn một task ưu tiên cao từ `To Do` chuyển sang `Doing`.
-2. Đọc User Story, Acceptance Criteria và test case liên quan.
-3. Viết code, chạy thử, ghi nhận lỗi.
-4. Khi đạt Definition of Done, commit rồi chuyển sang `Done`.
-5. Nếu phát hiện yêu cầu mới, thêm vào Backlog rồi cân nhắc **V1 hay V2**; không tự động nhồi vào V1.
-
-Khi bắt đầu dùng GitHub Issues/Projects, có thể tạo một issue cho từng task và quản lý trạng thái trên Project Board. Không cần tạo hai backlog khác nhau nếu GitHub đã được sử dụng.
-
-## 3. Definition of Done cho một task
-
-- [ ] Hoạt động đúng theo Acceptance Criteria liên quan.
-- [ ] Chạy được qua localhost và không còn lỗi nghiêm trọng khi kiểm thử.
-- [ ] Các test case liên quan đã kiểm tra.
-- [ ] Code rõ ràng và được commit lên Git.
-- [ ] Nếu thay đổi chức năng hoặc cấu trúc, cập nhật `doc/` tương ứng.
-
-## 4. Nhịp Agile gợi ý (không ép Sprint)
-
-- **Trước khi làm:** chọn task hôm nay, nhắc lại AC cần đạt.
-- **Trong khi làm:** xử lý lần lượt, tránh quá nhiều việc cùng lúc.
-- **Sau khi làm:** kiểm thử và ghi việc chưa hoàn thành.
-- **Mỗi tuần hoặc sau một chức năng:** review bản chạy được và tự hỏi điều gì nên cải tiến.
-
-## 5. Nhật ký ngắn
-
-- 2026-11-04, tài liệu: bổ sung `root.md` làm bản đồ source hiện tại, giải thích module, state, luồng request, storage, cách chạy/test và giới hạn xác minh. Chưa cần tạo `.agent/`; chưa đổi trạng thái các task chức năng.
-
-- 2026-11-04, UI-01: thay giao diện bằng bảng màu xanh dương/trung tính, CSS mobile-first (mốc 540px và 860px), nhiệt độ lớn, icon SVG theo mã thời tiết, card độ ẩm/gió và dự báo. Giữ nguyên logic API, tìm kiếm, lịch sử và lưu ngôn ngữ. `node tests/logic.mjs` Pass với API/DOM mô phỏng; chưa xác minh bố cục bằng trình duyệt vì browser access host không khả dụng. Chưa Done; không commit/push/deploy.
-
-| Ngày | Task | Kết quả / Blocker |
+| Task | N?i dung | Tr?ng th?i |
 |---|---|---|
-| 2026-10-21 | T-01 | Đã tạo bộ tài liệu và các file source rỗng. Chưa có HTML/CSS/JS. |
-| 2026-10-21 | T-02 | Đã đồng ý phạm vi V1; đang cập nhật và kiểm tra baseline requirements. |
+| T-01 | Kh?i t?o c?u tr?c v? t?i li?u | Done ? skeleton ban ??u |
+| T-02 | ??ng b? requirements, stories, thi?t k? v? README | To Do ? ?? c?p nh?t, ch? review v? commit |
+| T-03 | Giao di?n responsive | To Do ? ?? c? source, ch? tr?nh duy?t |
+| T-04 | T?m/ch?n t?i ?a 5 ??a ?i?m | To Do ? test m? ph?ng Pass, ch? API th?t |
+| T-05 | Current v? Forecast 7 ng?y | To Do ? test m? ph?ng Pass, ch? API th?t |
+| T-06 | Render current v? 7 ng?y | To Do ? test m? ph?ng Pass, ch? tr?nh duy?t |
+| T-07 | VI/EN v? m? WMO | To Do ? test m? ph?ng Pass, ch? tr?nh duy?t |
+| T-08 | Loading, validation v? l?i | To Do ? c?n ho?n t?t manual |
+| T-09 | Ghi ngu?n Open-Meteo | To Do ? source c?, ch? m? li?n k?t th?c t? |
+| T-10 | Manual testing v? s?a l?i | To Do ? ch? ki?m tra UI-02 |
+| T-11 | Chu?n b? GitHub Pages v? ph?t h?nh | To Do ? ch?a push/deploy |
+| UI-01 | Giao di?n xanh v? SVG tr??c ??y | To Do ? ???c thay th? b?i thi?t k? UI-02; kh?ng ghi Done |
+| UI-02 | Trang ch?o m?ng, n?n ng?y/??m theo th?i ti?t, 7 ng?y, skill thi?t k? | Doing ? source v? test logic ?? c?p nh?t; ch? ki?m tra giao di?n |
 
-| 2026-10-21 | T-03..T-11 | ?? vi?t source V1 v? README; ki?m tra t?nh ??t. Kh?ng c? tr?nh duy?t k?t n?i ?? ki?m th? th?c t?; gi? task ch?a Done, T-10 ?ang Doing. Kh?ng commit/push/deploy theo y?u c?u. |
+## Definition of Done
 
-**Theo d?i:** T-02 ?? x?c nh?n baseline; tr?ng th?i Doing ???c gi? l?i cho t?i khi x?c minh commit t?i li?u. C?c task c? source ch?a ???c coi l? Done tr??c khi ki?m th? theo AC.
+- ??t Acceptance Criteria; ghi b?ng ch?ng Pass/Fail trong test plan.
+- Ch?y tr?n localhost, ki?m tra tr?nh duy?t; kh?ng c?n l?i Blocker/Major.
+- C?p nh?t t?i li?u v? commit Git.
+- V?i release: ki?m tra c? b?n deploy tr??c khi Done.
+
+## Nh?t k?
+
+- 2026-10-21: t?o skeleton v? baseline V1 ban ??u, ch?a c? ch?c n?ng t?i th?i ?i?m ??.
+- 2026-11-04: ?? c? source ch?n ??a ?i?m, l?ch s?, VI/EN v? UI xanh; th?m root.md. Ki?m th? m? ph?ng Pass; manual ch?a ho?n t?t.
+- 2026-11-05: ng??i d?ng y?u c?u UI theo ?nh tham chi?u, trang ch?o m?ng, n?n ng?y/??m (04:00?17:59 theo ??a ?i?m), d? b?o 7 ng?y v? skill t?i s? d?ng. C?p nh?t source, ?nh WebP n?i b?, t?i li?u v? tests. Test Node Pass. Browser inventory b?o browser access host unavailable; kh?ng ghi manual Pass. Ch?a commit, push hay deploy.
+
+## B??c k? ti?p
+
+M? Live Server v? ki?m tra UI-02 ? 360/768/1280px; th?c hi?n c?c ca trong 06-test-plan.md, s?a l?i v? ki?m tra l?i. Sau ?? review t?i li?u, chu?n b? commit v? GitHub Pages ?? ng??i d?ng duy?t tr??c xu?t b?n.
